@@ -14,3 +14,7 @@ class PostListView(ListView):
 
     model = Post
     template_name = "post-list.html"
+
+    def get_queryset(self):
+        return super(PostListView, self).get_queryset().are_active()
+        
