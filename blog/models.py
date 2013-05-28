@@ -17,7 +17,7 @@ class Content(TimeStampedModel):
         self.slug = short_slugify(self.title)
         super(Content, self).save(*args, **kwargs)
 
-    class Meta:
+    class Meta(TimeStampedModel.Meta):
         abstract = True
         ordering = ['-created']
         get_latest_by = "created"
