@@ -1,19 +1,40 @@
-{% block header %}
 
-    <h1>Tree of Cakes</h1>
+<head>
+    <title>{% block title %}{% endblock %} | Tree of Cakes</title>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    {% block post_head %}{% endblock %}
+</head>
 
-{% endblock %}
+{% block header %}<h1>Tree of Cakes</h1>{% endblock %}
 
 {% block content %}{% endblock %}
 
 {% block footer %}
 
-    <div class="footer_links">
-        <a href="/">Home</a> | <a href="/blog/">Blog</a> | <a href="/recipes/">Recipes</a> | <a href="/about/">About</a>
-    </div>
+    <footer>
+        <div class="footer_links">
+            <ul>
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
+                    <a href="/blog/">Blog</a> 
+                </li>
+                <li>
+                    <a href="/recipes/">Recipes</a>
+                </li>
+                <li>
+                    <a href="/about/">About</a>
+                </li>
+            </ul>
+        </div>
 
-    <div class="footer_statement">
-        All content (c) 2013 Chloe Malcolmson unless specifically stated.
-    </div>
-
+        <div class="footer_statement">
+            <aside>        
+                <span>
+                    &copy; {% now "Y" %} Chloe Malcolmson &ndash; All rights reserved unless specifically stated.
+                </span>
+            </aside>
+        </div>
+    </footer>
 {% endblock %}
