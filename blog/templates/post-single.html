@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <a href="{{ object.get_absolute_url }}">
+        <h2>{{ object.title }}</h2>
+    </a>
+
+    <div class="post_meta">
+        by {{ object.author }}
+        on {{ object.created }}
+    </div>
+
+    <div class="post_body">
+        {{ object.content|safe|linebreaks}}
+    </div>
+
+    <div class="post_tags">
+
+    </div>
+
+{% endblock %}
