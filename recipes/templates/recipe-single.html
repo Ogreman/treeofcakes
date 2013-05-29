@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title }} {% endblock %}
+
+{% block content %}
+
+    <a href="{{ object.get_absolute_url }}">
+        <h2>{{ object.title }}</h2>
+    </a>
+
+    <div class="recipe_meta">
+        by {{ object.author }}
+        on {{ object.created }}
+    </div>
+
+    <div class="recipe_body">
+        {% with object.ingredient_set.all as ingredients %}
+        {% if ingredients %}
+            <h3>Ingredients</h3>
+            <ul>
+                {% for ingredient in ingredients %}
+                    <li>
+                        {{ ingredient }} &ndash; {{ ingredient.amount }} {{ ingredient.unit }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        <h3>Instructions</h3>
+        {{ object.content|safe|linebreaks }}
+    </div>
+
+    <div class="recipe_tags"></div>
+
+{% endblock %}

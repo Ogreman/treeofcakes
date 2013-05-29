@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Recipes {% endblock %}
+
+{% block content %}
+
+    {% for recipe in object_list %}
+
+        <a href="{{ recipe.get_absolute_url }}">
+            <h2>{{ recipe.title }}</h2>
+        </a>
+
+        <div class="recipe_meta">
+            by {{ recipe.author }}
+            on {{ recipe.created }}
+        </div>
+
+        <div class="recipe_body"></div>
+
+        <div class="recipe_tags"></div>
+
+    {% endfor %}
+
+{% endblock %}
