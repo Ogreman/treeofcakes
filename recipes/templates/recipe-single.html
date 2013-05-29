@@ -14,7 +14,6 @@
     </div>
 
     <div class="recipe_body">
-        {% with object.ingredient_set.all as ingredients %}
         {% if ingredients %}
             <h3>Ingredients</h3>
             <ul>
@@ -25,7 +24,6 @@
                 {% endfor %}
             </ul>
         {% endif %}
-        {% endwith %}
         <h3>Instructions</h3>
         {{ object.content|safe|linebreaks }}
     </div>

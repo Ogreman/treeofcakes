@@ -8,6 +8,11 @@ class RecipeDetailView(DetailView):
     model = Recipe
     template_name = "recipe-single.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(RecipeDetailView, self).get_context_data(**kwargs)
+        context['ingredients'] = context.get('object').ingredient_set.all()
+        return context
+        
 class RecipeListView(ListView):
 
     model = Recipe
