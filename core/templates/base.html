@@ -1,40 +1,61 @@
 
-<head>
-    <title>{% block title %}{% endblock %} | Tree of Cakes</title>
-    <meta name="description" content="{% block description %}{% endblock %}">
-    {% block post_head %}{% endblock %}
-</head>
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta charset=utf-8>
+        <title>{% block title %}{% endblock %} | Tree of Cakes</title>
+        <meta name="description" content="{% block description %}{% endblock %}">
+        {% block post_head %}{% endblock %}
+    </head>
 
-{% block header %}<h1>Tree of Cakes</h1>{% endblock %}
+    <body>
+        
+        {% block header %}
+            <a href="/">
+                <h1>Tree of Cakes</h1>
+            </a>
+        {% endblock %}
 
-{% block content %}{% endblock %}
+        <nav>
+        </nav>
 
-{% block footer %}
+        <section>
+            <article>
+                {% block content %}{% endblock %}
+            </article>
+        </section>
 
-    <footer>
-        <div class="footer_links">
-            <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/blog/">Blog</a> 
-                </li>
-                <li>
-                    <a href="/recipes/">Recipes</a>
-                </li>
-                <li>
-                    <a href="/about/">About</a>
-                </li>
-            </ul>
-        </div>
+        {% block footer %}
+            <footer>
+                <div class="footer_links">
+                    <ul>
+                        <li>
+                            <a href="/">Home</a>
+                        </li>
+                        <li>
+                            <a href="/blog/">Blog</a> 
+                        </li>
+                        <li>
+                            <a href="/recipes/">Recipes</a>
+                        </li>
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                    </ul>
+                </div>
 
-        <div class="footer_statement">
-            <aside>        
-                <span>
-                    &copy; {% now "Y" %} Chloe Malcolmson &ndash; All rights reserved unless specifically stated.
-                </span>
-            </aside>
-        </div>
-    </footer>
-{% endblock %}
+                <div class="footer_statement">
+                    <aside>        
+                        <span>
+                            &copy; {% now "Y" %} Chloe Malcolmson &ndash; All rights reserved unless specifically stated.
+                        </span>
+                    </aside>
+                </div>
+            </footer>
+
+            <a href="http://www.djangoproject.com/">
+                <img src="https://www.djangoproject.com/m/img/badges/djangomade124x25.gif" border="0" alt="Made with Django." title="Made with Django." />
+            </a>
+        {% endblock %}
+    </body>
+</html>
