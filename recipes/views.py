@@ -1,10 +1,11 @@
-from django.views import generic
+from django.views.generic import View, ListView, DetailView
+from django.views.generic.detail import SingleObjectMixin
 from django.db import IntegrityError
 
 from .models import Recipe, RecipeVote
 from core.views import JSONResponseMixin
 
-class RecipeDetailView(generic.DetailView):
+class RecipeDetailView(DetailView):
 
     model = Recipe
     template_name = "recipe-single.html"
@@ -14,7 +15,7 @@ class RecipeDetailView(generic.DetailView):
         context['ingredients'] = context.get('object').ingredient_set.all()
         return context
         
-class RecipeListView(generic.ListView):
+class RecipeListView(ListView):
 
     model = Recipe
     template_name = "recipe-list.html"
@@ -22,10 +23,9 @@ class RecipeListView(generic.ListView):
     def get_queryset(self):
         return super(RecipeListView, self).get_queryset().are_active()
 
-class RecipeVoteView(JSONResponseMixin, generic.detail.SingleObjectMixin, generic.View):
+class RecipeVoteView(JSONResponseMixin, SingleObjectMixin, View):
     
     model = Recipe
-
 
     def get(self, request, *args, **kwargs):
         self.object = self.get_object()

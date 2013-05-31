@@ -1,0 +1,16 @@
+{% if top_recipes %}
+    <section class="module toprecipemod">
+            <h3><a href="/recipes/" title="All Tree of Cakes Recipes">Top Recipes</a></h3>
+            <div class="inner">
+                    <ul>
+                        {% for recipe in top_recipes %}
+                            <li>
+                               <a href="{{ recipe.get_absolute_url }}">
+                                    <h2>{{ recipe.title }}</h2>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+    </section>
+{% endif %}

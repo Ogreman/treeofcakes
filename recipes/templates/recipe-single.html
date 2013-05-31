@@ -6,25 +6,32 @@
 {% block content %}
 
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $(document).on('click', '.votelink', function() { 
-        var href = $(this).attr('rel');
-        var link = $(this).parents('b');
-        $.ajax({
-            url: href,
-            success: function(response) {
-                if (response.voted) {
-                    link.html("Voted");
-                    $('.votes').html('Votes: ' + response.votes);
-                } else {
-                    link.html("Already voted!");
+    <script>
+        $(document).on('click', '.votelink', function() { 
+            var href = $(this).attr('rel');
+            var link = $(this).parents('b');
+            var old  = link.html();
+            link.html("Processing...")
+            $.ajax({
+                url: href,
+                success: function(response) {
+                    if (response.voted) {
+                        link.html("Voted!");
+                        setTimeout(function () {
+                            link.html(old);
+                        }, 3000);
+                        $('.votes').html('Votes: ' + response.votes);
+                    } else {
+                        link.html("Already voted!");
+                        setTimeout(function () {
+                            link.html(old);
+                        }, 2000);
+                    }
                 }
-            }
+            });
+            return false;
         });
-        return false;
-    });
-</script>
+    </script>
 
 
     <a href="{{ object.get_absolute_url }}">

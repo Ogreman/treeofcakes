@@ -1,6 +1,8 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.template import TemplateDoesNotExist
+from django.views.generic import TemplateView
 
 class JSONResponseMixin(object):
     """
@@ -25,4 +27,15 @@ class JSONResponseMixin(object):
         # objects -- such as Django model instances or querysets
         # -- can be serialized as JSON.
         return json.dumps(context)
+
+
+
+class AboutPageView(TemplateView):
+
+    template_name = "about.html"
+
+
+class HomePageView(TemplateView):
     
+    template_name = "about.html"
+

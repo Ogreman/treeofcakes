@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 from core.models import Content, TimeStampedModel
 
 from .constants import *
+from .managers import RecipeManager
 
 
 class Ingredient(models.Model):
@@ -18,6 +19,8 @@ class Ingredient(models.Model):
 class Recipe(Content):
 
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient', null=True, blank=True)
+
+    objects = RecipeManager()
 
     def vote_link(self):
         return reverse("recipe_vote", kwargs={"pk": self.id})

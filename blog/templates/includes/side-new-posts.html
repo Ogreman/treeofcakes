@@ -1,0 +1,16 @@
+{% if new_posts %}
+    <section class="module newpostsmod">
+            <h3><a href="/blog/" title="Tree of Cakes Blog">Latest Entries</a></h3>
+            <div class="inner">
+                    <ul>
+                        {% for post in new_posts %}
+                            <li>
+                               <a href="{{ post.get_absolute_url }}">
+                                    <h2>{{ post.title }}</h2>
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+            </div>
+    </section>
+{% endif %}
