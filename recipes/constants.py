@@ -2,6 +2,7 @@ MAX_INGREDIENT_LENGTH = 100
 MAX_RECIPEINGREDIENT_DIGITS = 5
 MAX_RECIPEINGREDIENT_DECIMALS = 2
 UNIT_CHOICES = (
+    ('', 'only'),
     ('L', 'litre'),
     ('mL', 'millilitre'),
     ('g', 'gram'),

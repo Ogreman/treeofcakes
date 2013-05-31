@@ -50,7 +50,7 @@
             <ul>
                 {% for ingredient in ingredients %}
                     <li>
-                        {{ ingredient }} &ndash; {{ ingredient.amount }} {{ ingredient.unit }}
+                        {{ ingredient }}{% if not ingredient.unit %}{{ ingredient.amount|pluralize }}{% endif %} &ndash; {{ ingredient.amount }} {{ ingredient.unit }}
                     </li>
                 {% endfor %}
             </ul>

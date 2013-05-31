@@ -19,52 +19,58 @@
 
         <nav>
             <div class="header_nav">
-                <ul>
-                    <li>
+                <table width=50%>
+                    <td>
                         <a href="/">Home</a>
-                    </li>
-                    <li>
+                    </td>
+                    <td>
                         <a href="/blog/">Blog</a> 
-                    </li>
-                    <li>
+                    </td>
+                    <td>
                         <a href="/recipes/">Recipes</a>
-                    </li>
-                    <li>
+                    </td>
+                    <td>
                         <a href="/about/">About</a>
-                    </li>
-                </ul>
+                    </td>
+                </table>
             </div>
         </nav>
 
+	<table width=100%>
+	<tr>
+	<td width=50%>
         <section>
             <article>
                 {% block content %}{% endblock %}
             </article>
         </section>
-
+	</td>
+	<td width=10%>
         {% block sidebar %}
             <aside class="sidebar">
                 {% include "includes/sidebar.html" %}
             </aside>
         {% endblock %}
-
+	</td>
+	</tr>
+	</table>
         {% block footer %}
             <footer>
                 <div class="footer_nav">
-                    <ul>
-                        <li>
+                    <table>
+                        <td>
                             <a href="/">Home</a>
-                        </li>
-                        <li>
+                        </td>
+                        <td>
                             <a href="/blog/">Blog</a> 
-                        </li>
-                        <li>
+                        </td>
+                        <td>
                             <a href="/recipes/">Recipes</a>
-                        </li>
-                        <li>
+                        </td>
+                        <td>
                             <a href="/about/">About</a>
-                        </li>
-                    </ul>
+                        </td>
+                    </table>
                 </div>
 
                 <div class="footer_statement">
