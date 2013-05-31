@@ -2,7 +2,30 @@
 
 {% block title %}{{ object.title }} {% endblock %}
 
+
 {% block content %}
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '.votelink', function() { 
+        var href = $(this).attr('rel');
+        var link = $(this).parents('b');
+        $.ajax({
+            url: href,
+            success: function(response) {
+                if (response.voted) {
+                    link.html("Voted");
+                    $('.votes').html('Votes: ' + response.votes);
+                } else {
+                    link.html("Already voted!");
+                }
+            }
+        });
+        return false;
+    });
+</script>
+
 
     <a href="{{ object.get_absolute_url }}">
         <h2>{{ object.title }}</h2>
@@ -11,6 +34,7 @@
     <div class="recipe_meta">
         by {{ object.author }}
         on {{ object.created }}
+        <div class="votes">Votes: {{ object.count_votes }}</div>
     </div>
 
     <div class="recipe_body">
@@ -29,5 +53,9 @@
     </div>
 
     <div class="recipe_tags"></div>
-
+    <div class="recipe_vote">
+        <b>
+            <a rel="{{ object.vote_link }}" class="votelink">Vote</a>
+        </b>
+    </div>
 {% endblock %}

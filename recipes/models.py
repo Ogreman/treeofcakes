@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 
-from core.models import Content
+from core.models import Content, TimeStampedModel
 
 from .constants import *
 
@@ -19,8 +19,14 @@ class Recipe(Content):
 
     ingredients = models.ManyToManyField(Ingredient, through='RecipeIngredient', null=True, blank=True)
 
+    def vote_link(self):
+        return reverse("recipe_vote", kwargs={"pk": self.id})
+
     def get_absolute_url(self):
         return reverse("recipe_detail", kwargs={"slug": self.slug})
+
+    def count_votes(self):
+        return self.votes.count()
 
     class Meta(Content.Meta):
         verbose_name = 'Recipe'
@@ -36,3 +42,13 @@ class RecipeIngredient(models.Model):
 
     def __unicode__(self):
         return self.ingredient.name
+
+
+class RecipeVote(TimeStampedModel):
+
+    recipe = models.ForeignKey(Recipe, related_name="votes")
+    ip = models.CharField(max_length=40)
+    session = models.CharField(max_length=2048)
+
+    class Meta:
+        unique_together = ("recipe", "session")
