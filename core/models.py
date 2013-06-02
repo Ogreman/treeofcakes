@@ -30,6 +30,10 @@ class Content(TimeStampedModel):
 
     objects = ContentManager()
 
+    def __unicode__(self):
+        return self.title
+
+
     def save(self, *args, **kwargs):
         self.slug = short_slugify(self.title)
         super(Content, self).save(*args, **kwargs)

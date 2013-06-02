@@ -41,7 +41,7 @@ class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe, related_name="ingredient_set")
     ingredient = models.ForeignKey(Ingredient)
     amount = models.DecimalField(max_digits=MAX_RECIPEINGREDIENT_DIGITS, decimal_places=MAX_RECIPEINGREDIENT_DECIMALS)
-    unit = models.CharField(max_length=25, choices=UNIT_CHOICES)
+    unit = models.CharField(max_length=25, choices=UNIT_CHOICES, blank=True)
 
     def __unicode__(self):
         return self.ingredient.name
